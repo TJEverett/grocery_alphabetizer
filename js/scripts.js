@@ -1,6 +1,5 @@
 var listSize = 2;
 var listIds = ["item1", "item2"];
-var listItems = [];
 
 var emptyCheck = function(){
   var test = "item";
@@ -32,17 +31,20 @@ jQuery(document).ready(function(){
   jQuery("#new").click(function(event){
     event.preventDefault();
     addItem();
-  })
+  });
 
   jQuery("#groceryForm").submit(function(event){
     event.preventDefault();
+    var listItems = [];
     var empty = emptyCheck();
+
     if (empty === false){
       listIds.forEach(function(id){
         var listItem = jQuery("input#" + id).val();
         listItems.push(listItem);
       });
       listItems.sort();
+      jQuery(".listReturn ul").text("");
       listItems.forEach(function(item){
         jQuery(".listReturn ul").append("<li>" + item + "</li>");
       });
@@ -50,9 +52,4 @@ jQuery(document).ready(function(){
       alert("Please fill in all items");
     };
   });
-
-
-
-
-
 });
